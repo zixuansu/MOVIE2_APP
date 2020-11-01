@@ -1,0 +1,20 @@
+{%macro nav_bar()%}
+<nav>
+    <ul class="bar clearfix">
+        <li class="home pull-left"><a href="{{url_for('home_bp.watchlist')}}" >MY MOVIE WEB</a></li>
+        <li class="login pull-right"><a href="{{url_for('authentication_bp.login')}}">login</a></li>
+        <li class="message pull-right"><a href="#" >message</a></li>
+        <li class="search pull-right">
+            <form id="search" method="post" action="{{url_for('home_bp.searchlist')}}">
+                <input type="text" name="key">
+                <select name="search">
+                    <option value="actor">actor</option>
+                    <option value="genre">genre</option>
+                    <option value="director">director</option>
+                </select>
+                <input type="submit" value="search">
+            </form>
+        </li>
+    </ul>
+</nav>
+{%endmacro%}

@@ -1,0 +1,23 @@
+{%macro my_page(pages,endpoint)%}
+<nav>
+    <ul class="page">
+        {%if pages.cur_page == 1%}
+        <li class="First"><a href="{{url_for(endpoint,page=1)}}">First</a></li>
+        <li class="Previous"><a href="{{url_for(endpoint,page=1)}}">Previous</a></li>
+        {%else%}
+        <!-- <li class="First"><a href="{{url_for(endpoint,page=1)}}">First</a></li>
+        <li class="Previous"><a href="{{url_for(endpoint,page=pages['cur_page']-1)}}">Previous</a></li> -->
+        <li class="First"><a href="{{url_for(endpoint,page=1)}}">First</a></li>
+        <li class="Previous"><a href="{{url_for(endpoint,page=pages['cur_page']-1)}}">Previous</a></li>
+        {%endif%}
+        <li class="Now"><a href="">{{pages['cur_page']}}/{{pages['last_page']}}</a></li>
+        {%if pages.cur_page == pages.last_page%}
+        <li class="Next"><a href="{{url_for(endpoint,page=pages['last_page'])}}">Next</a></li>
+        <li class="Last"><a href="{{url_for(endpoint,page=pages['last_page'])}}">Last</a></li>
+        {%else%}
+        <li class="Next"><a href="{{url_for(endpoint,page=pages['cur_page']+1)}}">Next</a></li>
+        <li class="Last"><a href="{{url_for(endpoint,page=pages['last_page'])}}">Last</a></li>
+        {%endif%}
+    </ul>
+</nav>
+{%endmacro%}

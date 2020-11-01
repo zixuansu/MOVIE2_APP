@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>home</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/movieslist.css"> -->
+	<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename = 'css/movieslist.css') }}">
+</head>
+<body>
+	<!-- bar -->
+	{%import '_bar.html' as bar%}
+	{{bar.nav_bar()}}
+	<!-- content -->
+	<div class="content clearfix">
+		<!-- user -->
+		{%if user != None%}
+		<div class="user pull-left">
+			<div class="head">
+				<img src="{{ url_for('static', filename = 'img/head.jpg')}}" alt="">
+			</div>
+			<h3 class="name">{{user}}</h3>
+			<div class="message">
+				<span class="gender">man</span> | <span class="age">35</span>
+			</div>
+			<div class="logout">
+				<a href="{{url_for('authentication_bp.logout')}}">[logout]</a>
+			</div>
+		</div>
+		{%else%}
+		<div class="user pull-left">
+			<div class="head">
+				<img src="{{ url_for('static', filename = 'img/none_head.jpg')}}" alt="">
+			</div>
+			<h3 class="name">Please login first.</h3>
+		</div>
+		{%endif%}
+		<!-- movie -->
+		<ul class="movie pull-right">
+			{% for movie in movieslist %}
+				<li>
+					<div class="title-box">
+						<a class="title" href="{{url_for('detail_bp.show_movie',title=movie.title)}}">{{movie.title}}</a>
+					</div>
+					, {{movie.release_year}}, Directed by 
+					<div class="director-box">
+						<a class="director" href="{{url_for('detail_bp.show_director',name=movie.director)}}">{{movie.director}}</a>
+					</div>
+					<br>
+					genres: 
+					{% for genre in movie.genres %}
+						{% if loop.last %}
+						<span class="genre">{{genre.name}}</span>
+						{% else %}
+						<span class="genre">{{genre.name}}, </span>
+						{% endif %}
+					{% endfor %}
+					<br>
+					actors: 
+					{% for actor in movie.actors %}
+						{% if loop.last %}
+						<div class="actor-box">
+							<a class="actor" href="{{url_for('detail_bp.show_actor',name=actor.name)}}">{{actor.name}}</a>
+						</div>
+						{% else %}
+						<div class="actor-box">
+							<a class="actor" href="{{url_for('detail_bp.show_actor',name=actor.name)}}">{{actor.name}}</a>
+						</div> ,
+						{% endif %}
+					{% endfor %}
+					<br>
+					duration: {{movie._runtime_minutes}} minutes
+					<br>
+					<p class="description">{{movie.description}}</p>
+				</li>
+			{% endfor %}
+			{%import '_pages.html' as pg%}
+			{{pg.my_page(pages,endpoint)}}
+		</ul>
+	</div>
+	<!-- footer -->
+</body>
+</html>

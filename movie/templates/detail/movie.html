@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>home</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/movieslist.css"> -->
+	<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename = 'css/movie.css') }}">
+</head>
+<body>
+	<!-- bar -->
+	{%import '_bar.html' as bar%}
+	{{bar.nav_bar()}}
+	<!-- header -->
+	<!-- content -->
+	<div class="content">
+		<div class="movie">
+			<h1>Movie details</h1>
+			<div class="title-box">
+				<a class="title" href="{{url_for('detail_bp.show_movie',title=movie.title)}}">{{movie.title}}</a>
+			</div>
+			, {{movie.release_year}}, Directed by 
+			<div class="director-box">
+				<a class="director" href="{{url_for('detail_bp.show_director',name=movie.director.name)}}">{{movie.director.name}}</a>
+			</div>
+			<br>
+			genres: 
+			{% for genre in movie.genres %}
+				{% if loop.last %}
+				<span class="genre">{{genre.name}}</span>
+				{% else %}
+				<span class="genre">{{genre.name}}, </span>
+				{% endif %}
+			{% endfor %}
+			<br>
+			actors: 
+			{% for actor in movie.actors %}
+				{% if loop.last %}
+				<div class="actor-box">
+					<a class="actor" href="{{url_for('detail_bp.show_actor',name=actor.name)}}">{{actor.name}}</a>
+				</div>
+				{% else %}
+				<div class="actor-box">
+					<a class="actor" href="{{url_for('detail_bp.show_actor',name=actor.name)}}">{{actor.name}}</a>
+				</div> ,
+				{% endif %}
+			{% endfor %}
+			<br>
+			duration: {{movie._runtime_minutes}} minutes
+			<br>
+			<p class="description">{{movie.description}}</p>			
+		</div>
+		<br><br>
+		<hr>
+		<div id="leave-comment">
+			<h2>Leave a comment</h2>
+			<form method="post" class="clearfix">
+				<input name="movie" type="hidden" value="{{movie.title}}">
+				<input name="user" type="hidden" value="{{user}}">
+				<textarea name="comment" id="" cols="30" rows="2" class="pull-left"></textarea>
+				<input type="submit" class="pull-left" value="submit">
+			</form>
+		</div>
+		{%if comments|length >0%}
+		<br><br>
+		<hr>
+		<div class="list-comment">
+			<h2>comments</h2>
+			<ul>
+				{%for comment in comments%}
+				{%if loop.index <= 5%}
+				<li>
+					<div class="user">{{comment['user']}}</div>
+					<p class="time">&nbsp&nbsp&nbsp{{comment['timestamp']}}</p><br>
+					<p class="text">{{comment['text']}}</p>
+				</li>
+				{%endif%}
+				{%endfor%}
+			</ul>
+		</div>
+		{%endif%}
+	</div>
+	<!-- footer -->
+</body>
+</html>

@@ -1,0 +1,143 @@
+/*together*/
+body,p,ul,li,input{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+/*float*/
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float: right;
+}
+.clearfix{
+	*zoom: 1;
+}
+.clearfix::after{
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	clear: both;
+}
+body,.user::before{
+	background-image: url("../img/bcimg2.jpg")
+}
+/*bar*/
+.bar{
+	width: 1080px;
+	margin:8px auto 8px auto;
+	/*border: 1px solid black;*/
+	height: 60px;
+	/*line-height: 100px;*/
+	padding: 3px;
+	/*background-color: #2aafec;*/
+	text-align: center;
+}
+.bar li{
+	display:inline-block;
+	height: 60px;
+	width: 18%;
+	/*border: 1px solid red;*/
+	line-height: 60px;
+	text-align: center;
+	/*margin-left: 0px;*/
+	/*margin-right: 10px;*/
+	font-size: 20px;
+	background-color: #cef7ff;
+	border-radius: 3px;
+}
+.bar .home{
+	width: 28%;
+}
+.bar .search{
+	display: none;
+}
+.bar .message,.bar .login{
+	width: 18%;
+	margin-right: 15px;
+}
+.bar li:hover{
+	background-color: #cef7ee;
+}
+.bar a{
+	color: #1d2528;
+	font-weight: 900;
+}
+/*content*/
+.content{
+	width: 960px;
+	margin: 20px auto;
+	/*border:5px solid red;*/
+}
+.movie{
+	/*height: 400px;*/
+	width: 100%;
+	/*background-color: #eeefff;*/
+}
+.movie>li{
+	margin: 30px;
+	padding-bottom: 30px;
+	border-bottom: 4px solid #eeebbc;
+	line-height: 28px;
+}
+.movie .title-box,.movie .director-box,.movie .actor-box{
+	display: inline-block;
+}
+.movie .title-box:hover,.movie .director-box:hover,.movie .actor-box:hover{
+	background-color: #fffeef;
+}
+.movie .title{
+	font-size: 23px;
+	color: #999fff;
+	font-weight: 900;
+}
+.movie .director{
+	font-size: 20px;
+	color: #1fa923;
+}
+.movie .actor{
+	color: #000000;
+}
+.movie .description{
+	margin-top: 7px;
+	text-decoration: underline;
+	font-size: 18px;
+}
+#leave-comment textarea{
+	width: 75%;
+	font-size: 19px;
+	resize:none;
+}
+#leave-comment input{
+	display: inline-block;
+	width: 10%;
+	height: 50px;
+	margin-left: 10px;
+	font-size: 22px;
+}
+.list-comment li{
+	margin-bottom: 18px;
+}
+.list-comment .user{
+	display: inline-block;
+	font-size: 16px;
+	color:#707a7e;
+}
+.list-comment .text{
+	display: inline-block;
+	width: 800px;
+	font-family: times;
+	font-size: 22px;
+}
+.list-comment .time{
+	display: inline-block;
+	font-size: 10px;
+	color:#707a8c;
+}

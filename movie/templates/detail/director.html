@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>home</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/movieslist.css"> -->
+	<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename = 'css/director.css') }}">
+</head>
+<body>
+	<!-- bar -->
+	{%import '_bar.html' as bar%}
+	{{bar.nav_bar()}}
+	<!-- header -->
+	<!-- content -->
+	<div class="content">
+		<span class="title-before">Director: </span><span class="title">{{director}}</span>
+		<br>
+		<hr>
+		<div id="leave-comment">
+			<h2>Leave a comment</h2>
+			<form method="post" class="clearfix">
+				<input name="director" type="hidden" value="{{director}}">
+				<input name="user" type="hidden" value="{{user}}">
+				<textarea name="comment" id="" cols="30" rows="2" class="pull-left"></textarea>
+				<input type="submit" class="pull-left" value="submit">
+			</form>
+		</div>
+		{%if comments|length >0%}
+		<br><br>
+		<hr>
+		<div class="list-comment">
+			<h2>comments</h2>
+			<ul>
+				{%for comment in comments%}
+				{%if loop.index <= 5%}
+				<li>
+					<div class="user">{{comment['user']}}</div>
+					<p class="time">&nbsp&nbsp&nbsp{{comment['timestamp']}}</p><br>
+					<p class="text">{{comment['text']}}</p>
+				</li>
+				{%endif%}
+				{%endfor%}
+			</ul>
+		</div>
+		{%endif%}
+	</div>
+	<!-- footer -->
+</body>
+</html>

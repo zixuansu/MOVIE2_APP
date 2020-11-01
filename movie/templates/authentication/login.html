@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>home</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/movieslist.css"> -->
+	<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename = 'css/login.css') }}">
+</head>
+<body>
+	<!-- bar -->
+	{%import '_bar.html' as bar%}
+	{{bar.nav_bar()}}
+	<!-- header -->
+	<!-- content -->
+	<div class="content">
+		<form id="login" method="post">
+			<h2>Welcome to my movie web</h2>
+			{{ form.csrf_token }}
+			{{ form.user }}
+			{{ form.pwd }}
+			{{ form.submit }}
+			<div>
+				<span>Don't have an account yet? To </span><a href="{{url_for('authentication_bp.register')}}">register</a>.
+			</div>
+			<span>{{message}}</span>
+		</form>
+
+	</div>
+	<!-- footer -->
+</body>
+</html>
